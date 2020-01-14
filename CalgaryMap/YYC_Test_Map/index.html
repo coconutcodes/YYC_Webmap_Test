@@ -10,11 +10,11 @@
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <style>
         #map {
-            width: 1620px;
-            height: 891px;
+            width: 800px;
+            height: 600px;
         }
         </style>
-        <title></title>
+        <title>YYCMAP</title>
     </head>
     <body>
         <div id="map">
@@ -33,7 +33,7 @@
         <script src="data/Rivers_2.js"></script>
         <script>
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
+            zoomControl:true, maxZoom:28, minZoom:5
         })
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
@@ -56,19 +56,19 @@
         function pop_Calgary_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Community Type</th>\
-                        <td>' + (feature.properties['class'] !== null ? Autolinker.link(feature.properties['class'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <td colspan="2"><strong>Community Name:</strong><br />' + (feature.properties['name'] !== null ? Autolinker.link(feature.properties['name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Community Code</th>\
+                        <th scope="row">Community Code:</th>\
                         <td>' + (feature.properties['comm_code'] !== null ? Autolinker.link(feature.properties['comm_code'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Community Name</strong><br />' + (feature.properties['name'] !== null ? Autolinker.link(feature.properties['name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <th scope="row">Quadrant:</th>\
+                        <td>' + (feature.properties['sector'] !== null ? Autolinker.link(feature.properties['sector'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Quadrant</th>\
-                        <td>' + (feature.properties['sector'] !== null ? Autolinker.link(feature.properties['sector'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <th scope="row">Community Type:</th>\
+                        <td>' + (feature.properties['class'] !== null ? Autolinker.link(feature.properties['class'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -104,24 +104,6 @@
         bounds_group.addLayer(layer_Calgary_1);
         map.addLayer(layer_Calgary_1);
         function pop_Rivers_2(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['feature_ty'] !== null ? Autolinker.link(feature.properties['feature_ty'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lake_name'] !== null ? Autolinker.link(feature.properties['lake_name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lake_sourc'] !== null ? Autolinker.link(feature.properties['lake_sourc'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['modified_d'] !== null ? Autolinker.link(feature.properties['modified_d'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['perimeter'] !== null ? Autolinker.link(feature.properties['perimeter'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
         function style_Rivers_2_0() {
